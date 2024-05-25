@@ -1,3 +1,5 @@
+import { API_KEY } from "./secret/secret";
+
 /**
  * Глобальный объект для хранения состояния приложения.
  * @type {Object}
@@ -16,8 +18,8 @@
 export const global = {
   currentPage: window.location.pathname,
   api: {
-    apiKey: "0e3cfba6ae8cb00147ecf0a0a7959fae",
-    apiUrl: "https://api.themoviedb.org/3/",
+    apiKey: API_KEY,
+    apiUrl: "https://api.themoviedb.org/3",
   },
   search: {
     term: "",
