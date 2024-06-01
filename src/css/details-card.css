@@ -9,10 +9,8 @@
 }
 
 .details-card {
-  width: 400px;
-  background: var(--dark-blue);
   border-radius: 12px;
-  margin: 26px 0;
+  margin: 24px 12px;
   padding: 8px;
 }
 
@@ -25,6 +23,7 @@
 }
 
 .card-image {
+  display: block;
   max-width: 100%;
   border-radius: 12px;
   min-height: 399px;
@@ -81,8 +80,8 @@
 }
 
 .descrption-subtitle {
-  color: var(--light-gray);
-  font-size: 18px;
+  color: var(--gray);
+  font-size: 16px;
   font-weight: 500;
   margin-bottom: 20px;
   word-break: break-word;
@@ -114,12 +113,19 @@
   padding: 20px;
 }
 
-.card-title {
+.detailed-card-title {
   text-align: center;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 32px;
-  color: var(--white);
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 200%;
+  color: var(--gray-dark);
+}
+
+.detailed-card-overview {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 200%;
+  color: var(--gray-dark);
 }
 
 .list-group {
@@ -127,6 +133,11 @@
   margin: 0;
   padding: 0;
   margin-bottom: 12px;
+}
+
+.detailed-release {
+  display: flex;
+  justify-content: end;
 }
 
 /* swiper slider main and shop pages  */

@@ -1,5 +1,7 @@
 import { getData } from "./getData.js";
 import { global } from "../global.js";
+import { generateTemplate } from "../utils/generateTemplate.js";
+import { smoothscroll } from "../components/smothScroll.js";
 
 /**
  * Выполняет запрос к API для поиска данных.
@@ -10,7 +12,7 @@ import { global } from "../global.js";
  * @throws {Error} Бросает ошибку в случае неудачного запроса или проблем с сетью.
  */
 export const searchData = async () => {
-  const endpoint = `search/${global.search.type}?query=${global.search.term}&page=${global.search.page}`;
+  const endpoint = `/search/${global.search.type}?query=${global.search.term}&page=${global.search.page}`;
 
   return getData(endpoint);
 };
@@ -20,7 +22,11 @@ export const searchData = async () => {
  * Извлекает параметры поиска из строки запроса URL, устанавливает глобальные параметры поиска и вызывает функцию поиска API.
  * Если результаты поиска не пустые, отображает их и очищает поле ввода.
  */
-export const search = async () => {};
+export const search = async () => {
+  const { results, total_pages } = await searchData();
+  global.search.totalPages = total_pages;
+  displaySearchResults(results);
+};
 
 /**
  * Отображает результаты поиска.
@@ -28,7 +34,23 @@ export const search = async () => {};
  */
 export const displaySearchResults = (results) => {
   // Основная логика
+  console.log(results);
+  // Селекторы для вставки результатов
+  let searchResult = document.querySelector("#search-results");
+  let pagination = document.querySelector("#pagination");
+  // Очищаем селекторы от старых результатов
+
+  // Как-то так пока что)))
+  let options = {
+    containerSelector: "#search-results",
+  };
+
+  searchResult.innerHTML = pagination.innerHTML = "";
+
+  generateTemplate(results, options);
+
   // Отображаем пагинацию
+  displayPagination();
 };
 
 /**
@@ -67,7 +89,10 @@ export const displayPagination = () => {
     const { results } = await searchData();
 
     // Отображаем результаты поиска для новой страницы
+    displaySearchResults(results);
+
     // Плавная прокрутка к началу страницы
+    smoothscroll();
   });
 
   // Обработчик события для перехода на предыдущую страницу
@@ -78,6 +103,9 @@ export const displayPagination = () => {
     const { results } = await searchData();
 
     // Отображаем результаты поиска для новой страницы
+    displaySearchResults(results);
+
     // Плавная прокрутка к началу страницы
+    smoothscroll();
   });
 };
