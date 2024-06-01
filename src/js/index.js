@@ -2,6 +2,9 @@ import { global } from "./global.js";
 import { getData } from "./api/getData.js";
 import { generateTemplate } from "../js/utils/generateTemplate.js";
 import { tabsComponent } from "./components/tabs.js";
+import { search } from "./api/searchServices.js";
+
+const searchForm = document.querySelector(".search-form");
 
 /**
  * Инициализирует функции в зависимости от страницы.
@@ -13,16 +16,11 @@ function init() {
     case "/index.html":
       // Вызываем функции для отображения фильмов в прокате (слайдер), а также популярных фильмов и сериалов
       processFilmsAndShowsData("/movie/now_playing");
-
       processFilmsAndShowsData("/movie/popular");
-
       processFilmsAndShowsData("/tv/popular");
 
+      // Табы TV's или Movies
       tabsComponent();
-      
-      break;
-    case "/search.html":
-      // Вызываем функцию для выполнения поиска
       break;
   }
 }
@@ -64,4 +62,12 @@ export const processFilmsAndShowsData = async (endpoint) => {
   }
 };
 
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const searchTerm = document.querySelector("#search-term");
+  const searchType = document.querySelector(`input[name="type"]:checked`);
+  global.search.term = searchTerm.value;
+  global.search.type = searchType.value;
 
+  search();
+});
