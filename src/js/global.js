@@ -19,7 +19,7 @@ export const global = {
   currentPage: window.location.pathname,
   api: {
     apiKey: SECRET_API_KEY,
-    apiUrl: "https://api.themoviedb.org/3",
+    apiUrl: "https://api.themoviedb.org/3/",
   },
   search: {
     term: "",
