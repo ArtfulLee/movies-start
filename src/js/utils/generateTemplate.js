@@ -57,7 +57,7 @@ export const generateTemplate = (data, options) => {
 export const generateTemplateForDetails = (data, options) => {
   console.log(data);
   // Извлекаем данные из API по фильму/сериалу
-  const { original_title, overview, backdrop_path } = data;
+  const { original_title, overview, backdrop_path, release_date } = data;
 
   // Извлекаем опции для отрисовки
   const { containerSelector } = options;
@@ -67,8 +67,10 @@ export const generateTemplateForDetails = (data, options) => {
     <img class="card-image" src="https://image.tmdb.org/t/p/w500${backdrop_path}" alt="poster">
       <div class="card-descr">
         <h3 class="detailed-card-title">${original_title}</h3>
-        <p class="descrption-subtitle" >${overview}</p>
+        <div class="detailed-card-overview">Overview</div>
+        <p class="descrption-subtitle">${overview}</p>
       </div>
+      <div class="descrption-subtitle detailed-release">Release date: ${release_date}</div>
     </div>
     `;
 

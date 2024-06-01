@@ -10,7 +10,7 @@
 
 .details-card {
   border-radius: 12px;
-  margin: 26px 0;
+  margin: 24px 12px;
   padding: 8px;
 }
 
@@ -23,6 +23,7 @@
 }
 
 .card-image {
+  display: block;
   max-width: 100%;
   border-radius: 12px;
   min-height: 399px;
@@ -115,7 +116,14 @@
 .detailed-card-title {
   text-align: center;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 24px;
+  line-height: 200%;
+  color: var(--gray-dark);
+}
+
+.detailed-card-overview {
+  font-weight: bold;
+  font-size: 16px;
   line-height: 200%;
   color: var(--gray-dark);
 }
@@ -125,6 +133,11 @@
   margin: 0;
   padding: 0;
   margin-bottom: 12px;
+}
+
+.detailed-release {
+  display: flex;
+  justify-content: end;
 }
 
 /* swiper slider main and shop pages  */
