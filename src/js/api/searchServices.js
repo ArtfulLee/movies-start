@@ -10,7 +10,7 @@ import { global } from "../global.js";
  * @throws {Error} Бросает ошибку в случае неудачного запроса или проблем с сетью.
  */
 export const searchData = async () => {
-  const endpoint = `search/${global.search.type}?query=${global.search.term}&page=${global.search.page}`;
+  const endpoint = `/search/${global.search.type}?query=${global.search.term}&page=${global.search.page}`;
 
   return getData(endpoint);
 };

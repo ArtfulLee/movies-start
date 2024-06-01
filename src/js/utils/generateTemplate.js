@@ -1,7 +1,6 @@
 import { getData } from "../api/getData";
 import { Sidebar } from "../components/sidebar.js";
 import { initSwiper } from "../components/swiper.js";
-import { global } from "../global.js";
 
 /**
  * Функция для генерации и отображения контента в слайдере или без.
