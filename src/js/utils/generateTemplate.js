@@ -1,6 +1,7 @@
 import { getData } from "../api/getData";
 import { Sidebar } from "../components/sidebar.js";
 import { initSwiper } from "../components/swiper.js";
+import { global } from "../global.js";
 
 /**
  * Функция для генерации и отображения контента в слайдере или без.
@@ -54,17 +55,19 @@ export const generateTemplate = (data, options) => {
  * @param {string} options.containerSelector - Селектор родитель, в который будут добавлены элементы.
  */
 export const generateTemplateForDetails = (data, options) => {
+  console.log(data);
   // Извлекаем данные из API по фильму/сериалу
-  const { original_title, overview } = data;
+  const { original_title, overview, backdrop_path } = data;
 
   // Извлекаем опции для отрисовки
   const { containerSelector } = options;
 
   const template = `
-    <div class="card" data-id="">
+    <div class="details-card">
+    <img class="card-image" src="https://image.tmdb.org/t/p/w500${backdrop_path}" alt="poster">
       <div class="card-descr">
         <h3 class="detailed-card-title">${original_title}</h3>
-        <p>${overview}</p>
+        <p class="descrption-subtitle" >${overview}</p>
       </div>
     </div>
     `;
@@ -85,7 +88,7 @@ const handleCardClickAndGetData = async (event) => {
   id && openSidebar(id);
 
   // Запрос на получение фильма по id
-  const data = await getData(`movie/${id}`);
+  const data = await getData(`/movie/${id}`);
 
   // console.log("Полученные детали по фильму/сериалу:", data);
 
@@ -108,5 +111,9 @@ const attachListeners = () => {
  * @param {string} id - id фильма/сериала, для открытия детальной информации и выполнения запроса.
  */
 export const openSidebar = async (id) => {
+  // очищаем сайд бар перед показом деталей новой карточки
+  const sidebar = document.querySelector("#sidebar-list");
+  sidebar.innerHTML = "";
+
   new Sidebar("#sidebar", `[data-id="${id}"]`, "right").open(); // Открываем сайдбар
 };

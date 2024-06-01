@@ -12,11 +12,11 @@ function init() {
     case "/":
     case "/index.html":
       // Вызываем функции для отображения фильмов в прокате (слайдер), а также популярных фильмов и сериалов
-      processFilmsAndShowsData("movie/now_playing");
+      processFilmsAndShowsData("/movie/now_playing");
 
-      processFilmsAndShowsData("movie/popular");
+      processFilmsAndShowsData("/movie/popular");
 
-      processFilmsAndShowsData("tv/popular");
+      processFilmsAndShowsData("/tv/popular");
 
       tabsComponent();
       
@@ -38,16 +38,14 @@ export const processFilmsAndShowsData = async (endpoint) => {
   try {
     const data = await getData(endpoint);
 
-    // console.log(`Запрос по ${endpoint}:`, data);
-
     // Определяем контейнер в зависимости от эндпоинта
     let containerSelector;
 
     switch (endpoint) {
-      case "movie/now_playing":
+      case "/movie/now_playing":
         containerSelector = ".swiper-wrapper";
         break;
-      case "movie/popular":
+      case "/movie/popular":
         containerSelector = ".popular-movies";
         break;
       default:
@@ -58,7 +56,7 @@ export const processFilmsAndShowsData = async (endpoint) => {
     generateTemplate(data?.results ?? data, {
       containerSelector,
       // слайдер применяется только, если endpoint === "movie/now_playing"
-      useSlider: endpoint === "movie/now_playing",
+      useSlider: endpoint === "/movie/now_playing",
     });
     console.log("Полученные данные:", data);
   } catch (error) {

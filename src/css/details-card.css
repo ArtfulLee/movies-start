@@ -9,8 +9,6 @@
 }
 
 .details-card {
-  width: 400px;
-  background: var(--dark-blue);
   border-radius: 12px;
   margin: 26px 0;
   padding: 8px;
@@ -81,8 +79,8 @@
 }
 
 .descrption-subtitle {
-  color: var(--light-gray);
-  font-size: 18px;
+  color: var(--gray);
+  font-size: 16px;
   font-weight: 500;
   margin-bottom: 20px;
   word-break: break-word;
@@ -116,10 +114,10 @@
 
 .detailed-card-title {
   text-align: center;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 18px;
-  line-height: 32px;
-  color: var(--white);
+  line-height: 200%;
+  color: var(--gray-dark);
 }
 
 .list-group {
